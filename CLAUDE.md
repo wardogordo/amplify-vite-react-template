@@ -4,6 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Build and Development Commands
 
+**Requirements**: Node.js >= 20.20.0, npm >= 10.8.0
+
 ```bash
 npm run dev        # Start Vite dev server
 npm run build      # TypeScript compile + Vite production build
@@ -28,7 +30,7 @@ Infrastructure-as-code using TypeScript:
 - **`auth/resource.ts`** - Cognito configuration (email-based login)
 - **`data/resource.ts`** - GraphQL schema with DynamoDB, defines data models and authorization rules
 
-The schema uses **owner-based authorization** (`allow.owner()`) for automatic per-user data isolation - no manual auth checks needed in application code.
+The schema uses **owner-based authorization** (`allow.owner()`) for automatic per-user data isolation - no manual auth checks needed in application code. Default authorization mode is `userPool` (Cognito), so new models should use `allow.owner()` or `allow.authenticated()` for user-scoped access.
 
 ### Frontend (`src/`)
 
